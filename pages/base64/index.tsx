@@ -53,7 +53,7 @@ const Home: NextPage = () => {
           </Button>
         </Grid>
         <Grid item md={3} xs={8}>
-          <Button fullWidth onClick={() => setQuery('de')}>
+          <Button fullWidth color="secondary" onClick={() => setQuery('de')}>
             DECODE
           </Button>
         </Grid>
