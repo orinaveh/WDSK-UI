@@ -7,6 +7,7 @@ import type { AppProps } from 'next/app';
 import {
   createTheme,
   CssBaseline,
+  Drawer,
   ThemeProvider,
   responsiveFontSizes,
   AppBar,
@@ -15,9 +16,12 @@ import {
   IconButton,
   Typography,
   PaletteMode,
-  ThemeOptions
+  ThemeOptions,
+  MenuItem
 } from '@mui/material';
 import { useMemo, useState } from 'react';
+import routes from '../routes';
+import Link from 'next/link';
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   typography: {
@@ -44,15 +48,22 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [mode, setMode] = useState<PaletteMode>('light');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const theme = useMemo(() => responsiveFontSizes(createTheme(getDesignTokens(mode))), [mode]);
 
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
-            <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <IconButton
+              onClick={() => setIsMenuOpen((p) => !p)}
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
             <IconButton
@@ -61,6 +72,23 @@ function MyApp({ Component, pageProps }: AppProps) {
               color="inherit">
               {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
+            <Drawer open={isMenuOpen}>
+              <MenuItem>
+                <IconButton
+                  onClick={() => setIsMenuOpen(false)}
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu">
+                  <MenuIcon />
+                </IconButton>
+              </MenuItem>
+              {routes.map((route) => (
+                <MenuItem onClick={() => setIsMenuOpen(false)} key={route.label}>
+                  <Link href={route.route}>{route.label}</Link>
+                </MenuItem>
+              ))}
+            </Drawer>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               WDSK
             </Typography>
