@@ -23,10 +23,12 @@ import { useMemo, useState } from 'react';
 import routes from '../routes';
 import Link from 'next/link';
 
+import styles from './app.module.scss';
+
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   typography: {
     fontFamily: ['Open Sans', 'sans-serif'].join(','),
-    fontSize: 12
+    fontSize: 18
   },
   palette: {
     mode,
@@ -72,15 +74,19 @@ function MyApp({ Component, pageProps }: AppProps) {
               color="inherit">
               {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
-            <Drawer open={isMenuOpen}>
+            <Drawer className={styles.drawer} open={isMenuOpen}>
               <MenuItem>
                 <IconButton
                   onClick={() => setIsMenuOpen(false)}
-                  size="large"
                   edge="start"
                   color="inherit"
                   aria-label="menu">
                   <MenuIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
+                  color="inherit">
+                  {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
               </MenuItem>
               {routes.map((route) => (

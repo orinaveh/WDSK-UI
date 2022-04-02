@@ -65,6 +65,7 @@ const Home: NextPage = () => {
         <Grid item md={10} xs={16} sm={16}>
           <TextField
             value={userInput}
+            placeholder="Enter String..."
             onChange={(e) => setUserInput(e.target.value)}
             fullWidth
             multiline
@@ -72,7 +73,7 @@ const Home: NextPage = () => {
           />
         </Grid>
         <Grid item xs={16}>
-          <TextField value={result} disabled fullWidth multiline rows={8} />
+          <TextField placeholder="Result" value={result} disabled fullWidth multiline rows={8} />
         </Grid>
       </Grid>
     </div>
