@@ -4,8 +4,9 @@ import { Buffer } from 'buffer';
 import Button from '@mui/material/Button';
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import { Grid, TextField, Typography } from '@mui/material';
+import { Grid, IconButton, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { CopyAll } from '@mui/icons-material';
 
 const Home: NextPage = () => {
   const [userInput, setUserInput] = useState('');
@@ -25,6 +26,10 @@ const Home: NextPage = () => {
 
   const encode = (en?: string) => {
     setResult(Buffer.from(en ?? userInput).toString('base64'));
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(result);
   };
 
   useEffect(() => {
@@ -73,7 +78,21 @@ const Home: NextPage = () => {
           />
         </Grid>
         <Grid item xs={16}>
-          <TextField placeholder="Result" value={result} disabled fullWidth multiline rows={8} />
+          <TextField
+            InputProps={{
+              endAdornment: (
+                <IconButton onClick={copyToClipboard}>
+                  <CopyAll />
+                </IconButton>
+              )
+            }}
+            placeholder="Result"
+            value={result}
+            disabled
+            fullWidth
+            multiline
+            rows={8}
+          />
         </Grid>
       </Grid>
     </div>
