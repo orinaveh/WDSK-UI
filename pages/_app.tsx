@@ -21,9 +21,9 @@ import {
 } from '@mui/material';
 import { useMemo, useState } from 'react';
 import routes from '../routes';
-import Link from 'next/link';
 
 import styles from './app.module.scss';
+import { useRouter } from 'next/router';
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   typography: {
@@ -43,6 +43,17 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     MuiButton: {
       defaultProps: {
         variant: 'contained'
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: '2rem',
+          padding: '1rem'
+        }
+      }
+    },
+    MuiPaper: {
+      defaultProps: {
+        elevation: 4
       }
     }
   }
@@ -51,6 +62,13 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 function MyApp({ Component, pageProps }: AppProps) {
   const [mode, setMode] = useState<PaletteMode>('light');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const router = useRouter();
+
+  const onLinkClick = (route: string) => {
+    router.push(route);
+    setIsMenuOpen(false);
+  };
 
   const theme = useMemo(() => responsiveFontSizes(createTheme(getDesignTokens(mode))), [mode]);
 
@@ -90,8 +108,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                 </IconButton>
               </MenuItem>
               {routes.map((route) => (
-                <MenuItem onClick={() => setIsMenuOpen(false)} key={route.label}>
-                  <Link href={route.route}>{route.label}</Link>
+                <MenuItem onClick={() => onLinkClick(route.route)} key={route.label}>
+                  {route.label}
                 </MenuItem>
               ))}
             </Drawer>

@@ -1,0 +1,25 @@
+.layout {
+    margin-top: 25px;
+    display: grid;
+    gap: 25px;
+    min-height: 30rem;
+    max-height: 50rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-flow: column;
+
+    &__secret {
+        align-self: end;
+    }
+
+    &__json {
+        div {
+          height: 100%;
+        }
+    }
+
+    &__token {
+        grid-row: 1 / 2 span;
+        @extend .layout__json
+    }
+}
