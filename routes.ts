@@ -14,6 +14,10 @@ const routes = [
   {
     label: 'Text Diff',
     route: '/compare'
+  },
+  {
+    label: 'Regex',
+    route: 'http://localhost:3001'
   }
 ];
 
