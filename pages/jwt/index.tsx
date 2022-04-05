@@ -7,12 +7,16 @@ import pageStyles from './index.module.scss';
 import { IconButton, TextField, Typography } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { CopyAll } from '@mui/icons-material';
+import useCopyToClipboard from '../../hooks/useCopyToClipboard';
 
 const Home: NextPage = () => {
   const [userInput, setUserInput] = useState('');
   const [result, setResult] = useState('');
   const [secret, setSecret] = useState('jwt-string');
   const [jsonError, setJsonError] = useState(false);
+
+  const copySecret = useCopyToClipboard(secret);
+  const copyToken = useCopyToClipboard(result);
 
   const firstTime = useRef(true);
   const router = useRouter();
@@ -70,10 +74,6 @@ const Home: NextPage = () => {
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(result);
-  };
-
   useEffect(() => {
     const { jwt } = router.query;
     if (jwt && firstTime.current) {
@@ -108,7 +108,7 @@ const Home: NextPage = () => {
           className={pageStyles.layout__secret}
           InputProps={{
             endAdornment: (
-              <IconButton onClick={copyToClipboard}>
+              <IconButton onClick={copySecret}>
                 <CopyAll />
               </IconButton>
             )
@@ -123,7 +123,7 @@ const Home: NextPage = () => {
           className={pageStyles.layout__token}
           InputProps={{
             endAdornment: (
-              <IconButton onClick={copyToClipboard}>
+              <IconButton onClick={copyToken}>
                 <CopyAll />
               </IconButton>
             )
