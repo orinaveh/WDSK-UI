@@ -7,11 +7,14 @@ import styles from '../../styles/Home.module.css';
 import { Grid, IconButton, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { CopyAll } from '@mui/icons-material';
+import useCopyToClipboard from '../../hooks/useCopyToClipboard';
 
 const Home: NextPage = () => {
   const [userInput, setUserInput] = useState('');
   const [result, setResult] = useState('');
   const router = useRouter();
+
+  const copy = useCopyToClipboard(result);
 
   const setQuery = (type: 'en' | 'de') => {
     router.push({
@@ -26,10 +29,6 @@ const Home: NextPage = () => {
 
   const encode = (en?: string) => {
     setResult(Buffer.from(en ?? userInput).toString('base64'));
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(result);
   };
 
   useEffect(() => {
@@ -81,7 +80,7 @@ const Home: NextPage = () => {
           <TextField
             InputProps={{
               endAdornment: (
-                <IconButton onClick={copyToClipboard}>
+                <IconButton onClick={copy}>
                   <CopyAll />
                 </IconButton>
               )

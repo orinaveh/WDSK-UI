@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import { blue, red } from '@mui/material/colors';
+import { SnackbarProvider } from 'notistack';
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -74,53 +75,55 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed">
-          <Toolbar>
-            <IconButton
-              onClick={() => setIsMenuOpen((p) => !p)}
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}>
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
-              color="inherit">
-              {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
-            <Drawer className={styles.drawer} open={isMenuOpen}>
-              <MenuItem>
-                <IconButton
-                  onClick={() => setIsMenuOpen(false)}
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu">
-                  <MenuIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
-                  color="inherit">
-                  {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                </IconButton>
-              </MenuItem>
-              {routes.map((route) => (
-                <MenuItem onClick={() => onLinkClick(route.route)} key={route.label}>
-                  {route.label}
+      <SnackbarProvider maxSnack={3}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="fixed">
+            <Toolbar>
+              <IconButton
+                onClick={() => setIsMenuOpen((p) => !p)}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}>
+                <MenuIcon />
+              </IconButton>
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
+                color="inherit">
+                {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+              <Drawer className={styles.drawer} open={isMenuOpen}>
+                <MenuItem>
+                  <IconButton
+                    onClick={() => setIsMenuOpen(false)}
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu">
+                    <MenuIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
+                    color="inherit">
+                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                  </IconButton>
                 </MenuItem>
-              ))}
-            </Drawer>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              WDSK
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Box>
-      <Component {...pageProps} />
-      <CssBaseline />
+                {routes.map((route) => (
+                  <MenuItem onClick={() => onLinkClick(route.route)} key={route.label}>
+                    {route.label}
+                  </MenuItem>
+                ))}
+              </Drawer>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                WDSK
+              </Typography>
+            </Toolbar>
+          </AppBar>
+        </Box>
+        <Component {...pageProps} />
+        <CssBaseline />
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }
