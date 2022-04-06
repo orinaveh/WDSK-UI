@@ -17,7 +17,13 @@ const routes = [
   },
   {
     label: 'Regex',
-    route: 'http://localhost:3001'
+    route: '/regex',
+    external: true
+  },
+  {
+    label: 'Excalidraw',
+    route: '/excalidraw',
+    external: true
   }
 ];
 

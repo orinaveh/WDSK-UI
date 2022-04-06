@@ -1,3 +1,7 @@
 .drawer {
     width: 30rem;
+    &__first {
+        display: flex;
+        justify-content: space-between;
+    }
 }

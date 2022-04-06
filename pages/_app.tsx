@@ -66,9 +66,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const router = useRouter();
 
-  const onLinkClick = (route: string) => {
-    router.push(route);
-    setIsMenuOpen(false);
+  const onLinkClick = (route: string, external?: boolean) => {
+    if (external) {
+      window.open(route);
+    } else {
+      router.push(route);
+      setIsMenuOpen(false);
+    }
   };
 
   const theme = useMemo(() => responsiveFontSizes(createTheme(getDesignTokens(mode))), [mode]);
@@ -95,25 +99,29 @@ function MyApp({ Component, pageProps }: AppProps) {
                 {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
               <Drawer className={styles.drawer} open={isMenuOpen}>
-                <MenuItem>
-                  <IconButton
-                    onClick={() => setIsMenuOpen(false)}
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu">
-                    <MenuIcon />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
-                    color="inherit">
-                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                  </IconButton>
-                </MenuItem>
-                {routes.map((route) => (
-                  <MenuItem onClick={() => onLinkClick(route.route)} key={route.label}>
-                    {route.label}
+                <Box sx={{ width: 250 }} role="presentation">
+                  <MenuItem className={styles.drawer__first}>
+                    <IconButton
+                      onClick={() => setIsMenuOpen(false)}
+                      edge="start"
+                      color="inherit"
+                      aria-label="menu">
+                      <MenuIcon />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => setMode(theme.palette.mode === 'dark' ? 'light' : 'dark')}
+                      color="inherit">
+                      {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </IconButton>
                   </MenuItem>
-                ))}
+                  {routes.map((route) => (
+                    <MenuItem
+                      onClick={() => onLinkClick(route.route, route.external)}
+                      key={route.label}>
+                      {route.label}
+                    </MenuItem>
+                  ))}
+                </Box>
               </Drawer>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 WDSK
