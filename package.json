@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.3",
     "@types/jsonwebtoken": "^8.5.8",
+    "clipboard-polyfill": "^4.0.0-rc1",
     "jsonwebtoken": "^8.5.1",
     "next": "12.1.4",
     "notistack": "^2.0.3",

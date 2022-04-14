@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const [userInput, setUserInput] = useState('');
   const [result, setResult] = useState('');
   const [secret, setSecret] = useState('jwt-string');
+  const [secretError, setSecretError] = useState(false);
   const [jsonError, setJsonError] = useState(false);
 
   const copySecret = useCopyToClipboard(secret);
@@ -27,7 +28,8 @@ const Home: NextPage = () => {
       try {
         const parsedJson = JSON.parse(newUserInput);
         setJsonError(false);
-        const newJwt = jwt.sign(parsedJson, secret);
+        const newJwt = jwt.sign(parsedJson, secret, { noTimestamp: true });
+        setSecretError(false);
         setResult(newJwt);
         router.push({
           query: {
@@ -42,6 +44,7 @@ const Home: NextPage = () => {
 
   const onSecretChange = (newSecret: string) => {
     setSecret(newSecret);
+    setSecretError(false);
     if (newSecret) {
       const newJwt = jwt.sign(userInput, newSecret);
       setResult(newJwt);
@@ -56,13 +59,19 @@ const Home: NextPage = () => {
   const onResultChange = (newResult: string) => {
     if (newResult) {
       const jwtToken = jwt.decode(newResult);
-      setResult(newResult);
-      setUserInput(JSON.stringify(jwtToken, null, 2).replace(/\\n/g, ''));
-      router.push({
-        query: {
-          jwt: newResult
-        }
-      });
+      try {
+        jwt.verify(newResult, secret);
+      } catch (err) {
+        setSecretError(true);
+      } finally {
+        setResult(newResult);
+        setUserInput(JSON.stringify(jwtToken, null, 2).replace(/\\n/g, ''));
+        router.push({
+          query: {
+            jwt: newResult
+          }
+        });
+      }
     } else {
       setResult(newResult);
       setUserInput('');
@@ -114,6 +123,8 @@ const Home: NextPage = () => {
             )
           }}
           placeholder="Secret"
+          error={secretError}
+          helperText={secretError && 'Invalid Secret'}
           label="Secret"
           onChange={(e) => onSecretChange(e.target.value)}
           value={secret}

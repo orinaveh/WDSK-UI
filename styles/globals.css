@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: local('Open Sans'), local('Open Sans'), url('../public/fonts/OpenSansRegular.ttf') format('ttf');
+}
+
 html,
 body {
   padding: 0;
@@ -19,3 +27,4 @@ pre {
 * {
   box-sizing: border-box;
 }
+

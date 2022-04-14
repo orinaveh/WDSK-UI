@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import { useMemo, useState } from 'react';
 import { blue, red } from '@mui/material/colors';
 import { SnackbarProvider } from 'notistack';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -20,7 +21,6 @@ import {
   ThemeOptions,
   MenuItem
 } from '@mui/material';
-import { useMemo, useState } from 'react';
 import routes from '../routes';
 
 import styles from './app.module.scss';
@@ -41,6 +41,11 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     }
   },
   components: {
+    MuiTextField: {
+      defaultProps: {
+        color: 'secondary'
+      }
+    },
     MuiButton: {
       defaultProps: {
         variant: 'contained'
