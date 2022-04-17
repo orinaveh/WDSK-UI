@@ -22,7 +22,7 @@ const routes = [
   },
   {
     label: 'Excalidraw',
-    route: '/excalidraw',
+    route: '/excalidraw/',
     external: true
   }
 ];
