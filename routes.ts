@@ -16,13 +16,17 @@ const routes = [
     route: '/compare'
   },
   {
+    label: 'CRON',
+    route: '/cron'
+  },
+  {
     label: 'Regex',
     route: '/regex',
     external: true
   },
   {
     label: 'Excalidraw',
-    route: '/excalidraw/',
+    route: '/excalidraw',
     external: true
   }
 ];
