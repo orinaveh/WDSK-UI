@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CopyAll } from '@mui/icons-material';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard';
 
-const Home: NextPage = () => {
+const Jwt: NextPage = () => {
   const [userInput, setUserInput] = useState('');
   const [result, setResult] = useState('');
   const [secret, setSecret] = useState('jwt-string');
@@ -152,4 +152,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Jwt;

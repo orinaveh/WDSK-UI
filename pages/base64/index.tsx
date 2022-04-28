@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { CopyAll } from '@mui/icons-material';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard';
 
-const Home: NextPage = () => {
+const Base: NextPage = () => {
   const [userInput, setUserInput] = useState('');
   const [result, setResult] = useState('');
   const router = useRouter();
@@ -98,4 +98,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Base;

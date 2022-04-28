@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 type Datas = 'oldData' | 'newData';
 
-const Home: NextPage = () => {
+const TextDiff: NextPage = () => {
   const [oldDataString, setOldDataString] = useState('');
   const [newDataString, setNewDataString] = useState('');
 
@@ -64,4 +64,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default TextDiff;
