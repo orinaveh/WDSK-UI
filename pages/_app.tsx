@@ -5,26 +5,28 @@ import { SnackbarProvider } from 'notistack';
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import Drawer from '@mui/material/Drawer';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+
 import type { AppProps } from 'next/app';
 import {
   createTheme,
-  CssBaseline,
-  Drawer,
   ThemeProvider,
   responsiveFontSizes,
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  PaletteMode,
-  ThemeOptions,
-  MenuItem
-} from '@mui/material';
+  ThemeOptions
+} from '@mui/material/styles';
 import routes from '../routes';
 
 import styles from './app.module.scss';
 import { useRouter } from 'next/router';
+import useDarkMode, { PaletteMode } from '../hooks/useDarkMode';
+import 'react-js-cron/dist/esm/styles.css';
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   typography: {
@@ -66,7 +68,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [mode, setMode] = useState<PaletteMode>('light');
+  const [mode, setMode] = useDarkMode();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const router = useRouter();

@@ -3,8 +3,10 @@ import type { NextPage } from 'next';
 import CronTester from 'react-js-cron';
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import { Grid, Typography } from '@mui/material';
-import 'antd/dist/antd.css';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import 'antd/lib/button/style/index.css';
+import 'antd/lib/select/style/index.css';
 
 import cronStyles from './index.module.scss';
 

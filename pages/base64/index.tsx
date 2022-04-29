@@ -1,12 +1,15 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { Buffer } from 'buffer';
-import Button from '@mui/material/Button';
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import { Grid, IconButton, TextField, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
-import { CopyAll } from '@mui/icons-material';
+import CopyAll from '@mui/icons-material/CopyAll';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard';
 
 const Base: NextPage = () => {

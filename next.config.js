@@ -1,9 +1,7 @@
-const { withGlobalCss } = require('next-global-css');
-
-const withConfig = withGlobalCss();
+const withTM = require('next-transpile-modules')(['react-js-cron']);
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withConfig({
+const nextConfig = withTM({
   reactStrictMode: true,
   experimental: {
     outputStandalone: true

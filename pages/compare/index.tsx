@@ -1,9 +1,11 @@
-import React from 'react';
 import ReactDiffViewer from 'react-diff-viewer';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import { Grid, TextField, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+
 import { useState } from 'react';
 
 type Datas = 'oldData' | 'newData';
