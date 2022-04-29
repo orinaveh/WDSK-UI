@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../styles/antd.css';
 import { useMemo, useState } from 'react';
 import { blue, red } from '@mui/material/colors';
 import { SnackbarProvider } from 'notistack';
@@ -26,7 +27,6 @@ import routes from '../routes';
 import styles from './app.module.scss';
 import { useRouter } from 'next/router';
 import useDarkMode, { PaletteMode } from '../hooks/useDarkMode';
-import 'react-js-cron/dist/esm/styles.css';
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   typography: {
