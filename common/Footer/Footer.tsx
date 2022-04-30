@@ -10,7 +10,7 @@ const Footer = ({ email }: { email?: string }) => {
     <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, height: '5rem' }}>
       <div className={styles.content}>
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
-          {`WDSK - For Developers`}
+          WDSK - For Developers
         </Typography>
 
         <IconButton color="secondary" href={`mailto:${email}`}>
