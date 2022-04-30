@@ -11,6 +11,8 @@ import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import CopyAll from '@mui/icons-material/CopyAll';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard';
+import { getStaticProps } from '../../helpers/getGlobalStaticProps';
+import withFooter from '../../helpers/footerHoc';
 
 const Base: NextPage = () => {
   const [userInput, setUserInput] = useState('');
@@ -101,4 +103,6 @@ const Base: NextPage = () => {
   );
 };
 
-export default Base;
+export { getStaticProps };
+
+export default withFooter(Base);

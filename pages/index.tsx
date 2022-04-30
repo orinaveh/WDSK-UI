@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import { getStaticProps } from '../helpers/getGlobalStaticProps';
+import withFooter from '../helpers/footerHoc';
 
 const Home: NextPage = () => {
   return (
@@ -19,4 +21,6 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export { getStaticProps };
+
+export default withFooter(Home);

@@ -7,6 +7,8 @@ import pageStyles from './index.module.scss';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import { getStaticProps } from '../../helpers/getGlobalStaticProps';
+import withFooter from '../../helpers/footerHoc';
 
 import { useEffect, useRef, useState } from 'react';
 import CopyAll from '@mui/icons-material/CopyAll';
@@ -155,4 +157,6 @@ const Jwt: NextPage = () => {
   );
 };
 
-export default Jwt;
+export { getStaticProps };
+
+export default withFooter(Jwt);

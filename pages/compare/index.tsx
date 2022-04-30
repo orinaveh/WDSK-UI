@@ -5,6 +5,8 @@ import styles from '../../styles/Home.module.css';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { getStaticProps } from '../../helpers/getGlobalStaticProps';
+import withFooter from '../../helpers/footerHoc';
 
 import { useState } from 'react';
 
@@ -35,6 +37,7 @@ const TextDiff: NextPage = () => {
       onChange={(e) => onChange(e.target.value, type)}
       fullWidth
       multiline
+      placeholder="Enter Text..."
       rows={8}
     />
   );
@@ -66,4 +69,6 @@ const TextDiff: NextPage = () => {
   );
 };
 
-export default TextDiff;
+export { getStaticProps };
+
+export default withFooter(TextDiff);

@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CopyAll from '@mui/icons-material/CopyAll';
 import Grid from '@mui/material/Grid';
+import { getStaticProps } from '../../helpers/getGlobalStaticProps';
+import withFooter from '../../helpers/footerHoc';
 import 'antd/lib/button/style/index.css';
 import 'antd/lib/select/style/index.css';
 
@@ -55,4 +57,6 @@ const Cron: NextPage = () => {
   );
 };
 
-export default Cron;
+export { getStaticProps };
+
+export default withFooter(Cron);
