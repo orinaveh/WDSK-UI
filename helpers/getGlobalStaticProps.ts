@@ -3,6 +3,6 @@ export const getStaticProps = () => {
     props: {
       email: process.env.EMAIL ?? null
     },
-    revalidate: 60 * 60
+    revalidate: 10 * 60
   };
 };
